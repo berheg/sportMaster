@@ -1,0 +1,25 @@
+{
+  "name": "sportmaster",
+  "version": "1.0.0",
+  "description": "\"The REST API have two pars, a triangle checker and a blog\"",
+  "main": "./src/backend/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/berheg/sportMaster"
+  },
+  "author": "Girmay",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql": "^2.17.1",
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
