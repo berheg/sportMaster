@@ -5,8 +5,8 @@ const router = express.Router();
 //const bodyParserUrlencoded = bodyParser.urlencoded({ extended: true });
 
 router.get('/', (req, res) =>{
-    const {a,b,c} = req.body;
-    res.send(triangleChecker(a,b,c));
+    const {a,b,c} = req.query;
+    res.json(triangleChecker(a,b,c));
 })
 
 function triangleChecker(a,b,c) {
