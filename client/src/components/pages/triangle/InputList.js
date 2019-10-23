@@ -43,17 +43,12 @@ const btnStyle = {
 const answerDisplayStyle={
     display: 'none'
 }
-async function btnClickHandler(){
- const output = await fetch(`/api/triangle?a=6&&b=5&&c=12`, {
-    method: 'get',
-    headers: {
-        'content-type': 'application/text'
-    }
-    //body: {a:10,b:5,c:9}
-    
-});
-document.querySelector('h4.answerDisplay').style.display='block'; 
-document.querySelector('h4.answerDisplay').innerHTML = output;
+function btnClickHandler(){
+fetch(`/api/triangle?a=6&&b=5&&c=12`)
+.then(res => res.json)
+.then(json =>{const objectJson = json;
+  document.querySelector('h4.answerDisplay').innerHTML = objectJson.answer;
+  document.querySelector('h4.answerDisplay').style.display='block';})
 }
 
 export default InputList;
