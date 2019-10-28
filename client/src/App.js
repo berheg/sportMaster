@@ -9,7 +9,41 @@ import NewPost from './components/pages/blog/NewPost'
 import './App.css';
 //App component class
 class App extends Component {
-	
+	constructor(props){
+    super(props)
+    this.state ={
+      a:'',
+      b:'',
+      c: '',
+      answer: ''
+    }
+  }
+  handelInputAChange = e => {
+    this.setState({answer: ''}) ;
+    this.setState({ a:e.target.value });
+    
+  }
+  handelInputBChange = e => {
+    this.setState({answer: ''}) ;
+    this.setState({ b:e.target.value });
+  }
+  handelInputCChange = e => {
+    this.setState({answer: ''}) ;
+    this.setState({ c:e.target.value });
+  }
+ btnClickHandler =()=>{
+  console.log(this.state.a,this.state.b,this.state.c);
+  //this.setState({answer: 'Incorect'}) ; 
+    fetch(`http://localhost:5000/api/triangle?a=${this.state.a}&&b=${this.state.b}&&c=${this.state.c}`,{method: 'GET',
+    headers: {
+        'content-type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(json =>{this.setState({answer: json}) ;      
+      console.log(this.state.answer);     
+    })
+  }
   render() {
     return (
       <Router>
@@ -24,7 +58,12 @@ class App extends Component {
                   <h1>Triangle Checker</h1>
                   <h2>Enter three sides of the triangle and click check </h2>                  
                   <div className="">                    
-                    <InputList                      
+                    <InputList
+                    handelInputAChange = {this.handelInputAChange}
+                    handelInputBChange = {this.handelInputBChange} 
+                    handelInputCChange = {this.handelInputCChange} 
+                    answer={this.state.answer} 
+                    btnClickHandler={this.btnClickHandler}                   
                     />
                   </div>
                 </React.Fragment>
