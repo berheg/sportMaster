@@ -25,11 +25,14 @@ export class PostItem extends Component {
             <div style={this.getStyle()}>   
                 <h1>Enter New Post</h1>  
                 <label>Author</label>       
-                <input type="text" style={inputStyle} min='1' className="inputA" required/>                     
+                <input type="text" style={inputStyle} min='1' 
+                  className="inputA" required
+                  onChange = {this.props.handelAuthorChange}/>                     
             
                 <label>Post</label>       
-                <textarea type="text" style={textareaStyle} maxLength='300' className="textareaA" required/>  
-                <button onClick={btnClickHandler} style={btnStyle}>Add</button>                  
+                <textarea type="text" style={textareaStyle} maxLength='300' className="textareaA" 
+                  onChange = {this.props.handelPostChange} required/>  
+                <button onClick={this.props.btnClickHandler} style={btnStyle}>Submit</button>                  
             </div>
         </div>    
     
@@ -55,25 +58,16 @@ const linkStyle = {
     textDecoration: 'none'
   }
 const btnStyle = {
-    background: '#00ff00',
+    background: '#ffA900',
     color: '#fff',
     border: 'none',
     padding: '10px 19px',
-    width: '10%',
+    width: '15%',
     borderRadius: '50%',
     cursor: 'pointer',
     float: 'right',
     alignSelf: 'center'
 }
-async function btnClickHandler(){
-    fetch(`/api/triangle`, {
-       method: 'post',
-       headers: {
-           'content-type': 'application/json'
-       },
-       body: {}
-       
-   });
-}
+
 
 export default PostItem;
