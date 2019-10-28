@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import InputItem from './InputItem';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 export class InputList extends Component {
   getStyle = () => {
@@ -15,21 +15,26 @@ export class InputList extends Component {
     }
   }
   render() {
+    const {answer} = this.props;
     return (
       <div style={this.getStyle()}>        
-          <InputItem/> 
-          <button onClick={btnClickHandler} style={btnStyle}>Check</button>
-          <h4 className="answerDisplay" style={answerDisplayStyle}>{btnClickHandler}</h4>        
+          <InputItem 
+            handelInputAChange = {this.props.handelInputAChange}
+            handelInputBChange = {this.props.handelInputBChange} 
+            handelInputCChange = {this.props.handelInputCChange}
+          /> 
+          <button onClick={this.props.btnClickHandler} style={btnStyle}>Check</button>
+          <h4 className="answerDisplay" style={answerDisplayStyle}>{answer}</h4>        
       </div>
     )
   }
 }
 
-InputList.propTypes = {
+/*InputList.propTypes = {
   todo: PropTypes.object.isRequired,
   markComplete: PropTypes.func.isRequired,
   delTodo: PropTypes.func.isRequired,
-}
+}*/
 
 const btnStyle = {
   background: '#ff0000',
@@ -41,14 +46,7 @@ const btnStyle = {
   float: 'right'
 }
 const answerDisplayStyle={
-    display: 'none'
-}
-function btnClickHandler(){
-fetch(`/api/triangle?a=6&&b=5&&c=12`)
-.then(res => res.json)
-.then(json =>{const objectJson = json;
-  document.querySelector('h4.answerDisplay').innerHTML = objectJson.answer;
-  document.querySelector('h4.answerDisplay').style.display='block';})
+    display: 'block'
 }
 
 export default InputList;
