@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
 
-export class InputItem extends Component {
+export class InputItem extends Component {  
+  
   getStyle = () => {
     return {
       background:'#00FFFF',  
@@ -16,9 +17,9 @@ export class InputItem extends Component {
   render() {    
     return (
       <div style={this.getStyle()}>        
-          <input type="number" placeholder="a" style={inputStyle} min='1' className="inputA" required/>         
-          <input type="number" placeholder="b" style={inputStyle} min='1' className="inputB" required/> 
-          <input type="number" placeholder="c" style={inputStyle} min='1' className="inputC" required/>         
+          <input type="number" placeholder="a" style={inputStyle} min='1' className="inputA" required onChange={this.props.handelInputAChange}/>         
+          <input type="number" placeholder="b" style={inputStyle} min='1' className="inputB" required onChange={this.props.handelInputBChange}/> 
+          <input type="number" placeholder="c" style={inputStyle} min='1' className="inputC" required onChange={this.props.handelInputCChange}/>         
       </div>
     )
   }
