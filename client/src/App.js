@@ -34,7 +34,7 @@ class App extends Component {
  btnClickHandler =()=>{
   console.log(this.state.a,this.state.b,this.state.c);
   //this.setState({answer: 'Incorect'}) ; 
-    fetch(`http://localhost:5000/api/triangle?a=${this.state.a}&&b=${this.state.b}&&c=${this.state.c}`,{method: 'GET',
+    fetch(`http://localhost:5000/triangle?a=${this.state.a}&&b=${this.state.b}&&c=${this.state.c}`,{method: 'GET',
     headers: {
         'content-type': 'application/json'
     }
