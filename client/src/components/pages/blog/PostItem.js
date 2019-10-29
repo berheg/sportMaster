@@ -17,22 +17,27 @@ export class PostItem extends Component {
     }
   }
 
-  render() {    
+  render() { 
+    const { resAddNewPost, resAddNewAuthor } = this.props;
     return (  
-        <div >          
-            
+        <div >    
             <Link style={linkStyle} to="/blog">New Post</Link> | <Link style={linkStyle} to="/blog/NewComment">New Comment</Link> | <Link style={linkStyle} to="/PostsComments">Posts</Link>
             <div style={this.getStyle()}>   
                 <h1>Enter New Post</h1>  
                 <label>Author</label>       
                 <input type="text" style={inputStyle} min='1' 
                   className="inputA" required
-                  onChange = {this.props.handelAuthorChange}/>                     
-            
+                  onChange = {this.props.handelAuthorChange}/> 
+                <label>Title</label>                     
+                <input type="text" style={inputStyle} min='1' 
+                  className="inputA" required
+                  onChange = {this.props.handelTitleChange}/>
                 <label>Post</label>       
                 <textarea type="text" style={textareaStyle} maxLength='300' className="textareaA" 
                   onChange = {this.props.handelPostChange} required/>  
-                <button onClick={this.props.btnClickHandler} style={btnStyle}>Submit</button>                  
+                <button onClick={this.props.btnClickHandler} style={btnStyle}>Submit</button> 
+                <h4 className="answerDisplay" style={answerDisplayStyle}>{resAddNewPost}</h4>
+                <h4 className="answerDisplay" style={answerDisplayStyle}>{resAddNewAuthor}</h4>                  
             </div>
         </div>    
     
@@ -68,6 +73,8 @@ const btnStyle = {
     float: 'right',
     alignSelf: 'center'
 }
-
+const answerDisplayStyle={
+  display: 'block'
+}
 
 export default PostItem;
