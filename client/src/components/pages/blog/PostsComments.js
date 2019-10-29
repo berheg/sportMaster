@@ -30,7 +30,17 @@ export class PostsComments extends Component {
                     <React.Fragment>
                       <PostCommentListItem postTitle={this.state.post.title}
                         postDescription={post.description}/>
-                        
+                        <label>Comment</label>
+                        { this.props.comments.forEach(comment => {
+                          return(
+                          <div>                              
+                                                        
+                            <PostCommentListItem postTitle={this.state.post.title}/> 
+                            </div>   
+                          )
+                        })
+                    }
+                  
                     </React.Fragment>
                   )                   
                 })}                                   
@@ -44,15 +54,6 @@ const linkStyle = {
     color: '#hhh3333',
     textDecoration: 'none'
   }
-/*<label>Comment</label>
-                        { this.props.comments.filter(comment => {
-                            if(comment.post_Id === post.id){
-                              return 
-                                <PostCommentListItem postTitle={this.state.post.title}/>
-    
-                            }
-                            
-                          })
-                        }*/
+
 
 export default PostsComments;
