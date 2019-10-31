@@ -12,9 +12,9 @@ app.use(express.json());
 router.use(bodyParser());
 //function returns sql query for adding new meal row in sportmasterblogs database
 const addNewPost = function(post) {
-    const sql = `insert into meal ` +
-                `(postName) ` +
-                `values('${post.postName}')` ;     
+    const sql = `insert into post ` +
+                `(title, description) ` +
+                `values('${post.title}','${post.description}')`;     
    return sql;
 };
 //returns all rows of the given table
@@ -30,6 +30,7 @@ router.get("/", (req, res) => {
 //add new row in the given table
 router.post("/", (req, res) => {
     const post = req.body;  
+    console.log(post)
     pool.query(addNewPost(post), function(err, results, fields) {
     if(err){
         console.error(err);
