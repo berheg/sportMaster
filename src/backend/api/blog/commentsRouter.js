@@ -13,13 +13,13 @@ router.use(bodyParser());
 //function returns sql query for adding new postcomments row in sportmasterblogs database
 const addNewPostcomment = function(postcomment) {
   const sql = `insert into postcomments ` +
-              `(postcommentName) ` +
-              `values('${postcomment.postcommentName}')` ;     
+              `(description, user_id, post_id) ` +
+              `values('${postcomment.description}', '${postcomment.user_id}', '${postcomment.post_id}')` ;     
  return sql;
 };
 //returns all rows of the given table
 router.get("/", (req, res) => {
-    pool.query(sqlFunction.getAllRows('postcomment'), function(err, results, fields) {
+    pool.query(sqlFunction.getAllRows('postcomments'), function(err, results, fields) {
         if(err){
           console.error(err);
           return;
@@ -35,6 +35,7 @@ router.post("/", (req, res) => {
         console.error(err);
         return;
     }
+      //`The row with ${postcomment} is successfully added!`
       res.json(results);
     });
   });
