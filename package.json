@@ -1,7 +1,7 @@
 {
   "name": "sportmaster",
   "version": "1.0.0",
-  "description": "\"The REST API have two pars, a triangle checker and a blog\"",
+  "description": "The REST API have two pars, a triangle checker and a blog",
   "main": "./src/backend/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
