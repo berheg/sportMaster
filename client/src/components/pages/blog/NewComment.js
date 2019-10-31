@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 export class NewComment extends Component {
   constructor(props){
     super(props)
     this.state ={
-      user:'',
+      userId:'',
       postId:'',
       comment: '',
       title: ''
@@ -14,7 +13,7 @@ export class NewComment extends Component {
   }
   //user name or Id input handler
   handelUserChange = e => {
-    this.setState({ user:e.target.value });
+    this.setState({ userId:e.target.value });
   }
   //post Id input change handler
   handelPostIdChange = e => {
@@ -26,7 +25,7 @@ export class NewComment extends Component {
   }
   //submition button input handler 
   btnClickHandler = () =>{
-    const newPost = { title:this.state.title,
+    const newComment = { title:this.state.title,
                       description:this.state.post
                     }
     fetch(`/blogs/posts`, {
@@ -34,7 +33,7 @@ export class NewComment extends Component {
        headers: {
            'content-type': 'application/json'
        },
-       body: newPost       
+       body: newComment       
    });
   }
   getStyle = () => {
@@ -54,7 +53,7 @@ export class NewComment extends Component {
   render() {    
     return (  
         <div >            
-            <Link style={linkStyle} to="/blog">New Post</Link> | <Link style={linkStyle} to="/blog/NewComment">New Comment</Link> | <Link style={linkStyle} to="/PostsComments">Posts</Link>
+            <Link style={linkStyle} to="/blog">New Post</Link> | <Link style={linkStyle} to="/blog/NewComment">New Comment</Link> | <Link style={linkStyle} to="/blog/PostsComments">Posts</Link>
             <div style={this.getStyle()}>   
                 <h1>Enter New Comment</h1>  
                 <label>Post ID</label>       
