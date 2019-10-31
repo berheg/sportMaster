@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-
 export class PostCommentListItem extends Component {
     
   
     render() {    
-      return (  
+      return ( 
+        <div>
+        
           <React.Fragment>                  
-            <p />           
-          </React.Fragment>    
+            <p>This sample Posts and Comments</p>            
+          </React.Fragment>
+          </div>     
         )
     }
   }
-  
-  
+   
   
   
   export default PostCommentListItem;
