@@ -21,7 +21,7 @@ export class PostItem extends Component {
     const { resAddNewPost, resAddNewAuthor } = this.props;
     return (  
         <div >    
-            <Link style={linkStyle} to="/blog">New Post</Link> | <Link style={linkStyle} to="/blog/NewComment">New Comment</Link> | <Link style={linkStyle} to="/PostsComments">Posts</Link>
+            <Link style={linkStyle} to="/blog">New Post</Link> | <Link style={linkStyle} to="/blog/NewComment">New Comment</Link> | <Link style={linkStyle} to="/blog/PostsComments">Posts</Link>
             <div style={this.getStyle()}>   
                 <h1>Enter New Post</h1>  
                 <label>Author</label>       
