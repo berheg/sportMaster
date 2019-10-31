@@ -25,30 +25,34 @@ export class PostsComments extends Component {
             <div style={this.getStyle()}>   
                 <h1>Available Posts and comments</h1>  
                 <label>Post</label>       
-                {this.props.posts.map(post => {
-                  return( 
-                    <React.Fragment>
-                      <PostCommentListItem postTitle={this.state.post.title}
-                        postDescription={post.description}/>
-                        <label>Comment</label>
-                        { this.props.comments.forEach(comment => {
-                          return(
-                          <div>                              
-                                                        
-                            <PostCommentListItem postTitle={this.state.post.title}/> 
-                            </div>   
-                          )
-                        })
-                    }
-                  
-                    </React.Fragment>
-                  )                   
-                })}                                   
+                <PostCommentListItem />
+                <label>Comment</label>
+                <PostCommentListItem /> 
+                              
+                                                    
             </div>
         </div>    
     )
   }
 }
+/*{this.props.posts.map(post => {
+                  return( 
+                    <React.Fragment>
+                      <PostCommentListItem />
+postTitle={this.state.post.title}
+                        postDescription={post.description}
+  { this.props.comments.map(comment => {
+                          return(
+                          <div> 
+                          postTitle={this.state.post.title}
+                          </div> 
+                          </React.Fragment>  )
+                        })
+                    }
+                  
+                    
+                  )                   
+                })}        */
 
 const linkStyle = {
     color: '#hhh3333',
