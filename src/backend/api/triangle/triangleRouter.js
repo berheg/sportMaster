@@ -1,25 +1,30 @@
 const express = require('express');
-//const app = express;
 const router = express.Router();
-//const bodyParser = require('body-parser');
-//const bodyParserUrlencoded = bodyParser.urlencoded({ extended: true });
 
+//router for end point '/triangle'
 router.get('/', (req, res) =>{
-    const {a,b,c} = req.query;
+    const a = Number(req.query.a);
+    const b = Number(req.query.b);
+    const c = Number(req.query.c);
+    if(a== undefined||b==undefined||c==undefined)
+        res.json('Undefined')
+
     res.json(triangleChecker(a,b,c));
 })
-
+//given three sides of the triangle, returns type of triangle
 function triangleChecker(a,b,c) {
-    let max = a,
-        sumOfSmallers = b+c;
+    //max maximum of the three initialized as a
+    let max = a;
+    //sum of smaller sides
+    let sumOfSmallers = b + c;
     let msgResponse;
-    if(max < b){
+    if(max < b && b > c){
         max = b;
-        sumOfSmallers = a+c;
+        sumOfSmallers = a + c;
     }
-    else if(max < c){
+    else if(c > max){
         max = c;
-        sumOfSmallers = a+b;
+        sumOfSmallers = a + b;
     }
     if(sumOfSmallers > max){
         if(a===b && b===c)
@@ -31,6 +36,7 @@ function triangleChecker(a,b,c) {
     }
     else
        msgResponse = ('Incorrect');
+       
     return msgResponse;
 }
 module.exports = router;
