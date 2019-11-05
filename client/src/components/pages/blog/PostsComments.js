@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import PostCommentListItem from './PostCommentListItem';
+import * as API from '../../../api/index'
 //import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export class PostsComments extends Component {
+
+  state ={
+    posts: [{id:1, title: 'Sport', description: 'It maters'}],
+    noError: true,
+    errorStatus: ''
+  }
+  componentDidMount = async() => {
+    const fetchedPost = await API.getFetchedPosts();
+    console.log(fetchedPost);
+    if(!fetchedPost.status){
+      this.setState({posts: fetchedPost});
+    }
+    else{
+      this.setState({noError: false}, {errorStatus: fetchedPost.status});
+    }    
+  }
   getStyle = () => {
     return {
       background:'#00FFFF',  
@@ -24,35 +41,25 @@ export class PostsComments extends Component {
             <Link style={linkStyle} to="/blog">New Post</Link> | <Link style={linkStyle} to="/blog/NewComment">New Comment</Link> | <Link style={linkStyle} to="/blog/PostsComments">Posts</Link>
             <div style={this.getStyle()}>   
                 <h1>Available Posts and comments</h1>  
-                <label>Post</label>       
-                <PostCommentListItem />
-                <label>Comment</label>
-                <PostCommentListItem /> 
-                              
-                                                    
+                <h2>Posts</h2> 
+                {this.state.noError &&
+                <React.Fragment>
+                {this.state.posts.map(post => {
+                  return( 
+                    <React.Fragment>
+                      <PostCommentListItem key= {post.id} post = {post}/>     
+                    </React.Fragment>
+                  )
+                })
+              } 
+              </React.Fragment>
+            }                                         
             </div>
         </div>    
     )
   }
 }
-/*{this.props.posts.map(post => {
-                  return( 
-                    <React.Fragment>
-                      <PostCommentListItem />
-postTitle={this.state.post.title}
-                        postDescription={post.description}
-  { this.props.comments.map(comment => {
-                          return(
-                          <div> 
-                          postTitle={this.state.post.title}
-                          </div> 
-                          </React.Fragment>  )
-                        })
-                    }
-                  
-                    
-                  )                   
-                })}        */
+
 
 const linkStyle = {
     color: '#hhh3333',
