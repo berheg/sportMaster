@@ -29,23 +29,17 @@ class NewPost extends Component {
   handelPostChange = e => {    
     this.setState({ post:e.target.value });
   }
-  fetchHandler = (api, body) => {
-    fetch(api, {
-       method: 'post',
-       headers: {
-           'content-type': 'application/json'
-       },
-       body: body       
-   });
-  }
+  
   //submition button input handler 
   btnClickHandler = () =>{
     const newPost = { title:this.state.title,
                       description:this.state.post
-                    }
-                    const postFetchResult = this.fetchHandler(`https://localhost:5000/blogs/posts`,newPost);
+                    }    
+    const postFetchResult = fetchHandler(`http://localhost:5000/blogs/posts`,newPost);
+    const newAuthor = this.state.authorName;
+    const authorFetchResult = fetchHandler(`http://localhost:5000/blogs/authors`,newAuthor);
  this.setState({resAddNewPost: postFetchResult});
- this.setState({resAddNewAuthor: this.fetchHandler(`https://localhost:5000/blogs/authors`,this.state.authorName) });
+ this.setState({resAddNewAuthor: authorFetchResult });
 }
   render() {
     return (
@@ -78,6 +72,13 @@ class NewPost extends Component {
     );
   }
 }
-
-
+function fetchHandler(api, newPost) {
+  fetch(api, {
+     method: 'post',
+     headers: {
+         'content-type': 'application/json'
+     },
+     body: newPost       
+ });
+}
 export default NewPost;
