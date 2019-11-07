@@ -21,8 +21,8 @@ const addNewUser = function(user) {
 router.get("/", (req, res) => {
     pool.query(sqlFunction.getAllRows('user'), function(err, results, fields) {
         if(err){
-          console.error(err);
-          return;
+          console.logg(`Error: ${err.sqlMessage}`);
+          res.send(err);
         }
         res.json(results);
     });    
@@ -30,21 +30,28 @@ router.get("/", (req, res) => {
 //add new row in the given table
 router.post("/", (req, res) => {
     const user = req.body;  
-    pool.query(addNewUser(user), function(err, results, fields) {
-      if(err){
-        console.error(err);
-        return;
-    }
-      res.json(results);
-    });
+    if(user.name=== undefined){
+      const error = new Error('Undefined' );
+      error.status =  413;
+      error.message = 'Undefined'
+      res.send({error});
+    }else{
+      pool.query(addNewUser(user), function(err, results, fields) {
+        if(err){
+          console.logg(`Error: ${err.sqlMessage}`);
+          res.send(err);
+        }
+        res.json(results);
+      });
+    }    
   });
 //returns row with the given id and table
 router.get("/:id", (req, res) => {
     const userId = req.params.id;
     pool.query(sqlFunction.getRowById('user',userId), function(err, results, fields) {
     if(err){
-        console.error(err);
-        return;
+        console.logg(`Error: ${err.sqlMessage}`);
+        res.send(err);
     }
     res.json(results);    
     });
@@ -54,21 +61,29 @@ router.put("/:id", (req, res) => {
     const userId = req.params.id;
     const columnName = req.body.columnName;
     const value = req.body.value;
-    pool.query(sqlFunction.updateRowById('user',userId,columnName,value), function(err, results, fields) {
-      if(err){
-        console.error(err);
-        return;
+    if(columnName=== undefined || value=== undefined){
+      const error = new Error('Undefined' );
+      error.status =  413;
+      error.message = 'Undefined'
+      res.send({error});
+    }else{
+      pool.query(sqlFunction.updateRowById('user',userId,columnName,value), function(err, results, fields) {
+        if(err){
+          console.logg(`Error: ${err.sqlMessage}`);
+          res.send(err);
+        }
+        res.send(`The row with id of ${userId} is updated!`);    
+      });
     }
-      res.send(`The row with id of ${userId} is updated!`);    
-    });
+    
   });
   //delete row with given id in the given table 
 router.delete("/:id", (req, res) => {
     const userId = req.params.id;  
     pool.query(sqlFunction.deleteRowById('user',userId), function(err, results, fields) {
       if(err){
-        console.error(err);
-        return;
+        console.logg(`Error: ${err.sqlMessage}`);
+        res.send(err);
     }    
       res.send(`The row with id of ${userId} is successfully deleted!`);    
     });
