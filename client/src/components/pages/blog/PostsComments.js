@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PostCommentListItem from './PostCommentListItem';
-import * as API from '../../../api/index'
+//import * as API from '../../../api/index'
 //import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export class PostsComments extends Component {
 
   state ={
-    posts: [{id:1, title: 'Sport', description: 'It maters'}],
+    posts: [{id:1, title: 'Sport', description: 'It maters'}, {id:2, title: 'Java', description: 'It is OOP'} ],
     noError: true,
     errorStatus: ''
   }
-  componentDidMount = async() => {
+  /*componentDidMount = async() => {
     const fetchedPost = await API.getFetchedPosts();
     console.log(fetchedPost);
     if(!fetchedPost.status){
@@ -20,7 +20,7 @@ export class PostsComments extends Component {
     else{
       this.setState({noError: false}, {errorStatus: fetchedPost.status});
     }    
-  }
+  }*/
   getStyle = () => {
     return {
       background:'#00FFFF',  
