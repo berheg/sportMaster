@@ -19,7 +19,7 @@ app.use(( req, res, next) => {
     "Origin, X-Requested-With, Content-Type,Accept, Authorization"
   );
   if(req.method==='OPTION'){
-    res.header("Access-Control-Allow-Method", "PUT, POST, PATCH, DELETE");
+    res.header("Access-Control-Allow-Method", "GET,PUT, POST, PATCH, DELETE");
     return res.status(200).json({});
   }
   next();  
@@ -31,12 +31,14 @@ app.use('/blogs/posts', postsRoute);
 app.use('/blogs/comment', commentsRoute);
 app.use('/blogs/authors', authorsRoute);
 
+//if no match router from above middleware
 app.use((req,res,next) => {
   const error = new Error('Not Found');
   error.status=404;
   next(error);  
-})
+});
 
+//Error handling
 app.use((error, req, res, next) => {
  res.status(error.status || 500);
  
