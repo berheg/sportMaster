@@ -2,7 +2,7 @@ This project is an assignment from Sportmaster.
 
 ## Required installation
 
-In the project directory, you have to install the following packages:
+In the project directory, you have to install the following packages for the backend api:
 
 ### `npm init`
 ### `npm install --save-dev nodemon`
