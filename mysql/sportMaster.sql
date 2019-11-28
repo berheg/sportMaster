@@ -28,7 +28,7 @@ insert into user
 insert into user
 	value( null, 'Christofer');
 insert into post
-	value( null, 'sport','');
+	value( null, 'sport','relation between healthy and sport');
 insert into post
 	value( null, 'culture','');
 insert into post
