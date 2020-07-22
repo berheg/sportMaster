@@ -19,7 +19,7 @@ const addNewAuthor = function(author) {
 };
 //returns all rows of the given table
 router.get("/", (req, res) => {
-    pool.query(sqlFunction.getAllRows('author'), function(err, results, fields) {
+    pool.query(sqlFunction.getAllRows('authors'), function(err, results, fields) {
         if(err){
           console.log(`Error: ${err.sqlMessage}`);
           res.send(err);
