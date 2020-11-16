@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "AnnotateTheWeb.API",
-    "description": "API documentation for the final project",
+    "title": "Sportmaster.API",
+    "description": "API documentation for the sportmaster project",
     "contact": {}
   },
   "host": "",
@@ -85,199 +85,20 @@
         }
       }
     },
-    "/screenshots/": {
-      "post": {
-        "tags": ["Screenshots"],
-        "summary": "Create new screenshot",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Create screenshot",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": ["url", "height", "width", "fk_project_id"],
-              "properties": {
-                "url": {
-                  "type": "string"
-                },
-                "height": {
-                  "type": "number"
-                },
-                "width": {
-                  "type": "number"
-                },
-                "fk_project_id": {
-                  "type": "integer"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "{\"key\":\"[unique key]\"}",
-            "schema": {
-              "type": "object"
-            }
-          }
-        }
-      }
-    },
-    "/screenshots/{key}": {
+    "/authors/{author_id}": {
       "get": {
-        "tags": ["Screenshots"],
-        "summary": "Get a screenshot using a unique key.",
-        "operationId": "GetScreenshot",
-        "consumes": [],
-        "produces": [
-          "application/json",
-          "text/json",
-          "application/xml",
-          "text/xml"
-        ],
+        "tags": ["authors"],
+        "summary": "Get a author by author_id",
+        "consumes": ["application/json"],
         "parameters": [
           {
-            "name": "key",
+            "name": "author_id",
             "in": "path",
-            "description": "The unique key for the screenshot",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            }
-          }
-        }
-      }
-    },
-    "/annotations/": {
-      "post": {
-        "tags": ["Annotations"],
-        "summary": "Create new annotation",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Create annotation",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": ["title", "description", "area", "fk_screenshot_id"],
-              "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "area": {
-                  "type": "object",
-                  "format": "object"
-                },
-                "fk_screenshot_id": {
-                  "type": "integer"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/projects/": {
-      "post": {
-        "tags": ["Projects"],
-        "summary": "Create new project",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Create new project",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": ["name", "fk_user_id"],
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "fk_user_id": {
-                  "type": "number"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/projects/{project_id}": {
-      "get": {
-        "tags": ["Projects"],
-        "summary": "Get a project by project_id",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "project_id",
-            "in": "path",
-            "description": "The unique project_id",
+            "description": "The unique author_id",
             "required": true,
             "type": "string",
             "properties": {
-              "name": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Projects"],
-        "summary": "Update a project",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "project_id",
-            "in": "path",
-            "description": "The unique project_id",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "Project name",
-            "in": "body",
-            "description": "Update a project",
-            "required": "true",
-            "schema": {
-              "type": "object",
-              "required": ["name"],
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
+              "name": "string"
             }
           }
         ],
@@ -288,14 +109,14 @@
         }
       },
       "delete": {
-        "tags": ["Projects"],
-        "summary": "Delete a specific project",
+        "tags": ["authors"],
+        "summary": "Delete a specific author",
         "consumes": ["application/json"],
         "parameters": [
           {
-            "name": "project_id",
+            "name": "author_id",
             "in": "path",
-            "description": "The unique project_id",
+            "description": "The unique author_id",
             "required": true,
             "type": "string"
           }
@@ -307,45 +128,7 @@
         }
       }
     },
-    "/annotations/{key}": {
-      "patch": {
-        "tags": ["Annotations"],
-        "summary": "update existing annotation",
-        "consumes": ["application/json"],
-        "parameters": [
-          {
-            "name": "key",
-            "in": "path",
-            "description": "The unique key for the annotation",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Update annotation",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": ["title", "description"],
-              "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
+    
     "/comments/": {
       "post": {
         "tags": ["Comments"],
@@ -363,7 +146,7 @@
                 "description",
                 "fk_annotations_id",
                 "fk_comments_id",
-                "fk_user_id"
+                "fk_author_id"
               ],
               "properties": {
                 "description": {
@@ -464,5 +247,122 @@
       }
     }
   },
+  "/posts/": {
+      "post": {
+        "tags": ["posts"],
+        "summary": "Create new post for an annotation",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Create post",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "description",
+                "fk_annotations_id",
+                "fk_posts_id",
+                "fk_author_id"
+              ],
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "fk_annotations_id": {
+                  "type": "integer"
+                },
+                "fk_posts_id": {
+                  "type": "integer"
+                },
+                "fk_user_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/posts/{post_id}": {
+      "put": {
+        "tags": ["posts"],
+        "summary": "Update a post",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "description": "The unique post_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Update post for an annotation",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["description"],
+              "properties": {
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["posts"],
+        "summary": "Delete a post",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "description": "The unique post_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/posts/annotation/{annotation_id}": {
+      "get": {
+        "tags": ["posts"],
+        "summary": "Get all posts for a specific annotation",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "annotation_id",
+            "in": "path",
+            "description": "The unique annotation_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
   "definitions": {}
 }
